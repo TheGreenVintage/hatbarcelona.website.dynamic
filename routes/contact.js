@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var domain = 'hatbarcelona.com';
-var mailgun = require('mailgun-js')({apiKey: process.env.MAILGUN_API_KEY, domain: domain});
+var mailgun = require('mailgun-js')({
+  apiKey: process.env.MAILGUN_API_KEY,
+  domain: process.env.MAILGUN_DOMAIN
+});
+var info_email = process.env.INFO_EMAIL,
+var webmaster_email = process.env.WEBMASTER_EMAIL;
 
-router.post('/contact', function(req, res) {
+router.post('/support', function(req, res) {
 
   if (!req.body) {
     res.sendStatus(409);
@@ -18,8 +22,8 @@ router.post('/contact', function(req, res) {
 
     var data = {
       from: req.body.name + ' <' + req.body.email + '>',
-      to: 'info@hatbarcelona.com',
-      bcc: 'fcsonline@gmail.com',
+      to: info_email,
+      bcc: webmaster_email,
       subject: req.body.subject,
       html: html
     };
