@@ -6,7 +6,7 @@
 
 var app = require('../app');
 var fs = require('fs');
-var debug = require('debug')('thegreenvintage:server');
+var debug = require('debug')('hatbarcelona:server');
 var http = require('http');
 
 /**
@@ -70,7 +70,7 @@ function onListening() {
 
 function shutdown() {
   server.close();
-  process.exit();
+  process.exit(0);
 }
 
 process.on('SIGINT', shutdown);
