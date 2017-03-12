@@ -10,13 +10,13 @@ var webmaster_email = process.env.WEBMASTER_EMAIL;
 router.post('/support', function(req, res) {
 
   if (!req.body) {
-    res.sendStatus(409);
+    res.status(409).send("Invalid request body");
     return;
   }
 
   req.app.render('contact', req.body, function(err, html) {
     if (err) {
-      res.sendStatus(409);
+      res.status(409).send("Invalid render");
       return;
     }
 
@@ -30,7 +30,7 @@ router.post('/support', function(req, res) {
 
     mailgun.messages().send(data, function (err, body) {
       if (err) {
-        res.sendStatus(409);
+        res.status(409).send("Invalid email");
         return;
       }
 
