@@ -24,7 +24,7 @@ router.post('/support', function(req, res) {
       from: req.body.name + ' <' + req.body.email + '>',
       to: info_email,
       bcc: webmaster_email,
-      subject: req.body.subject,
+      subject: 'HAT Barcelona - Private Tour',
       html: html
     };
 
